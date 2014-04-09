@@ -1,0 +1,12 @@
+> checkMappings
+> webStage
+
+$ exists target/web/gzipCompress/css/a.css.gz
+$ exists target/web/gzipCompress/js/a.js.gz
+
+$ exists target/web/stage/css/a.css
+$ exists target/web/stage/css/a.css.gz
+
+$ exists target/web/stage/js/a.js
+$ exists target/web/stage/js/a.js.gz
+
