@@ -38,6 +38,12 @@ Or to exclude all `.js` files but include any other files:
 excludeFilter in GzipKeys.compress := "*.js"
 ```
 
+The default filter is to only include `.html`, `.css`, and `.js` files:
+
+```scala
+includeFilter in GzipKeys.compress := "*.html" || "*.css" || "*.js"
+```
+
 
 Contribution policy
 -------------------
