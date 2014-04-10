@@ -2,7 +2,11 @@ lazy val root = (project in file(".")).addPlugins(SbtWeb)
 
 // for checking that the produced pipeline mappings are correct
 
-val expected = Set("css", "css/a.css", "css/a.css.gz", "js", "js/a.js", "js/a.js.gz")
+val expected = Set(
+  "css", "css/a.css", "css/a.css.gz",
+  "js", "js/a.js", "js/a.js.gz",
+  "images", "images/a.png", "images/b.jpg"
+)
 
 val checkMappings = taskKey[Unit]("check the pipeline mappings")
 

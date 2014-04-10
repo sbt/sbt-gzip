@@ -26,7 +26,7 @@ object SbtGzip extends AutoPlugin {
   import autoImport.GzipKeys._
 
   override def projectSettings: Seq[Setting[_]] = Seq(
-    includeFilter in compress := AllPassFilter,
+    includeFilter in compress := "*.html" || "*.css" || "*.js",
     excludeFilter in compress := HiddenFileFilter,
     compress := gzipFiles.value,
     pipelineStages <+= compress

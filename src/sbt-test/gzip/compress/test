@@ -4,9 +4,14 @@
 $ exists target/web/gzipCompress/css/a.css.gz
 $ exists target/web/gzipCompress/js/a.js.gz
 
+$ absent target/web/gzipCompress/images/a.png.gz
+$ absent target/web/gzipCompress/images/b.jgp.gz
+
 $ exists target/web/stage/css/a.css
 $ exists target/web/stage/css/a.css.gz
 
 $ exists target/web/stage/js/a.js
 $ exists target/web/stage/js/a.js.gz
 
+$ exists target/web/stage/images/a.png
+$ exists target/web/stage/images/b.jpg
