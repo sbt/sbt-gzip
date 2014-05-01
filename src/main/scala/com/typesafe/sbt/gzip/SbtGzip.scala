@@ -7,9 +7,7 @@ import sbt.Keys._
 
 object Import {
 
-  object GzipKeys {
-    val compress = TaskKey[Pipeline.Stage]("gzip-compress", "Add gzipped files to asset pipeline.")
-  }
+  val gzip = TaskKey[Pipeline.Stage]("gzip-compress", "Add gzipped files to asset pipeline.")
 
 }
 
@@ -23,20 +21,19 @@ object SbtGzip extends AutoPlugin {
 
   import SbtWeb.autoImport._
   import WebKeys._
-  import autoImport.GzipKeys._
+  import autoImport._
 
   override def projectSettings: Seq[Setting[_]] = Seq(
-    includeFilter in compress := "*.html" || "*.css" || "*.js",
-    excludeFilter in compress := HiddenFileFilter,
-    compress := gzipFiles.value,
-    pipelineStages <+= compress
+    includeFilter in gzip := "*.html" || "*.css" || "*.js",
+    excludeFilter in gzip := HiddenFileFilter,
+    gzip := gzipFiles.value
   )
 
   def gzipFiles: Def.Initialize[Task[Pipeline.Stage]] = Def.task {
     mappings =>
-      val targetDir = webTarget.value / compress.key.label
-      val include = (includeFilter in compress).value
-      val exclude = (excludeFilter in compress).value
+      val targetDir = webTarget.value / gzip.key.label
+      val include = (includeFilter in gzip).value
+      val exclude = (excludeFilter in gzip).value
       val gzipMappings = for {
         (file, path) <- mappings if !file.isDirectory && include.accept(file) && !exclude.accept(file)
       } yield {
