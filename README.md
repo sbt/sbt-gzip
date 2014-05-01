@@ -19,6 +19,11 @@ Your project's build file also needs to enable sbt-web plugins. For example with
 
     lazy val root = (project.in file(".")).addPlugins(SbtWeb)
 
+As with all sbt-web asset pipeline plugins you must declare their order of execution e.g.:
+
+```scala
+pipelineStages := Seq(gzip)
+```
 
 Configuration
 -------------

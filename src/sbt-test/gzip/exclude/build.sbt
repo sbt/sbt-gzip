@@ -1,8 +1,10 @@
 val root = (project in file(".")).addPlugins(SbtWeb)
 
+pipelineStages := Seq(gzip)
+
 // set an exclude filter for css files
 
-excludeFilter in GzipKeys.compress := "*.css"
+excludeFilter in gzip := "*.css"
 
 // for checking that the produced pipeline mappings are correct
 

@@ -6,7 +6,9 @@ name := "sbt-gzip"
 
 version := "1.0.0-SNAPSHOT"
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-web" % "1.0.0-M2")
+resolvers += Classpaths.sbtPluginSnapshots
+
+addSbtPlugin("com.typesafe.sbt" % "sbt-web" % "1.0.0-SNAPSHOT")
 
 publishMavenStyle := false
 

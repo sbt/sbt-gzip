@@ -1,8 +1,10 @@
 val root = (project in file(".")).addPlugins(SbtWeb)
 
+pipelineStages := Seq(gzip)
+
 // set an include filter for js files only
 
-includeFilter in GzipKeys.compress := "*.js"
+includeFilter in gzip := "*.js"
 
 // for checking that the produced pipeline mappings are correct
 
