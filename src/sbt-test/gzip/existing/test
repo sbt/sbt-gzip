@@ -1,0 +1,6 @@
+> webStage
+
+$ exists target/web/gzipCompress/js/a.js.gz
+
+$ exists target/web/stage/js/a.js
+$ exists target/web/stage/js/a.js.gz
