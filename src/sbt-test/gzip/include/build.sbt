@@ -8,7 +8,10 @@ includeFilter in gzip := "*.js"
 
 // for checking that the produced pipeline mappings are correct
 
-val expected = Set("css", "css/a.css", "js", "js/a.js", "js/a.js.gz")
+val expected = Set(
+  "css", "css/a.css",
+  "js", "js/a.js", "js/a.js.gz"
+) map(java.nio.file.Paths.get(_).toString)
 
 val checkMappings = taskKey[Unit]("check the pipeline mappings")
 
