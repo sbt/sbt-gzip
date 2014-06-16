@@ -8,7 +8,7 @@ val expected = Set(
   "css", "css/a.css", "css/a.css.gz",
   "js", "js/a.js", "js/a.js.gz",
   "images", "images/a.png", "images/b.jpg"
-)
+) map(java.nio.file.Paths.get(_).toString)
 
 val checkMappings = taskKey[Unit]("check the pipeline mappings")
 
