@@ -34,19 +34,19 @@ Include and exclude filters can be provided. For example, to only create
 gzip files for `.js` files:
 
 ```scala
-includeFilter in GzipKeys.compress := "*.js"
+includeFilter in gzip := "*.js"
 ```
 
 Or to exclude all `.js` files but include any other files:
 
 ```scala
-excludeFilter in GzipKeys.compress := "*.js"
+excludeFilter in gzip := "*.js"
 ```
 
 The default filter is to only include `.html`, `.css`, and `.js` files:
 
 ```scala
-includeFilter in GzipKeys.compress := "*.html" || "*.css" || "*.js"
+includeFilter in gzip := "*.html" || "*.css" || "*.js"
 ```
 
 
