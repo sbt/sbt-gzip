@@ -32,10 +32,10 @@ object SbtGzip extends AutoPlugin {
   )
 
   def gzipFiles: Def.Initialize[Task[Pipeline.Stage]] = Def.task {
+    val targetDir = (target in gzip).value
+    val include = (includeFilter in gzip).value
+    val exclude = (excludeFilter in gzip).value
     mappings =>
-      val targetDir = (target in gzip).value
-      val include = (includeFilter in gzip).value
-      val exclude = (excludeFilter in gzip).value
       val gzipMappings = for {
         (file, path) <- mappings if !file.isDirectory && include.accept(file) && !exclude.accept(file)
       } yield {
