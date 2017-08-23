@@ -3,8 +3,7 @@ sbt-gzip
 
 [sbt-web] plugin for gzip compressing web assets.
 
-[![Build Status](https://travis-ci.org/sbt/sbt-gzip.png?branch=master)](https://travis-ci.org/sbt/sbt-gzip)
-
+[![Build Status](https://travis-ci.org/sbt/sbt-gzip.png?branch=master)](https://travis-ci.org/sbt/sbt-gzip) [![Download](https://api.bintray.com/packages/sbt-web/sbt-plugin-releases/sbt-gzip/images/download.svg)](https://bintray.com/sbt-web/sbt-plugin-releases/sbt-gzip/_latestVersion)
 
 Add plugin
 ----------
@@ -12,7 +11,7 @@ Add plugin
 Add the plugin to `project/plugins.sbt`. For example:
 
 ```scala
-addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % "1.0.1")
+addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % "1.0.2")
 ```
 
 Your project's build file also needs to enable sbt-web plugins. For example with build.sbt:
