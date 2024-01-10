@@ -24,17 +24,17 @@ object SbtGzip extends AutoPlugin {
   import autoImport._
 
   override def projectSettings: Seq[Setting[_]] = Seq(
-    includeFilter in gzip := "*.html" || "*.css" || "*.js",
-    excludeFilter in gzip := HiddenFileFilter,
-    target in gzip := webTarget.value / gzip.key.label,
-    deduplicators += SbtWeb.selectFileFrom((target in gzip).value),
+    gzip / includeFilter := "*.html" || "*.css" || "*.js",
+    gzip / excludeFilter := HiddenFileFilter,
+    gzip / target := webTarget.value / gzip.key.label,
+    deduplicators += SbtWeb.selectFileFrom((gzip / target).value),
     gzip := gzipFiles.value
   )
 
   def gzipFiles: Def.Initialize[Task[Pipeline.Stage]] = Def.task {
-    val targetDir = (target in gzip).value
-    val include = (includeFilter in gzip).value
-    val exclude = (excludeFilter in gzip).value
+    val targetDir = (gzip / target).value
+    val include = (gzip / includeFilter).value
+    val exclude = (gzip / excludeFilter).value
     mappings =>
       val gzipMappings = for {
         (file, path) <- mappings if !file.isDirectory && include.accept(file) && !exclude.accept(file)
