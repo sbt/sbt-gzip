@@ -1,1 +1,1 @@
-addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % sys.props("project.version"))
+addSbtPlugin("com.github.sbt" % "sbt-gzip" % sys.props("project.version"))
