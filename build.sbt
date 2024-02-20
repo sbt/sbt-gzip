@@ -13,7 +13,7 @@ developers += Developer(
   url("https://github.com/playframework")
 )
 
-addSbtWeb("1.5.3")
+addSbtWeb("1.5.4")
 
 // Customise sbt-dynver's behaviour to make it work with tags which aren't v-prefixed
 ThisBuild / dynverVTagPrefix := false
