@@ -2,8 +2,6 @@ lazy val `sbt-gzip` = project in file(".")
 
 enablePlugins(SbtWebBase)
 
-sonatypeProfileName := "com.github.sbt.sbt-gzip" // See https://issues.sonatype.org/browse/OSSRH-77819#comment-1203625
-
 description := "sbt-web plugin for gzipping assets"
 
 developers += Developer(
