@@ -1,12 +1,15 @@
 package com.typesafe.sbt.gzip
 
 import sbt._
+import com.typesafe.sbt.PluginCompat
 import com.typesafe.sbt.web.SbtWeb
 import com.typesafe.sbt.web.pipeline.Pipeline
 import sbt.Keys._
+import xsbti.FileConverter
 
 object Import {
 
+  @transient
   val gzip = TaskKey[Pipeline.Stage]("gzip-compress", "Add gzipped files to asset pipeline.")
 
 }
@@ -23,7 +26,7 @@ object SbtGzip extends AutoPlugin {
   import WebKeys._
   import autoImport._
 
-  override def projectSettings: Seq[Setting[_]] = Seq(
+  override def projectSettings: Seq[Setting[?]] = Seq(
     gzip / includeFilter := "*.html" || "*.css" || "*.js",
     gzip / excludeFilter := HiddenFileFilter,
     gzip / target := webTarget.value / gzip.key.label,
@@ -35,14 +38,17 @@ object SbtGzip extends AutoPlugin {
     val targetDir = (gzip / target).value
     val include = (gzip / includeFilter).value
     val exclude = (gzip / excludeFilter).value
+    implicit val converter: FileConverter = fileConverter.value
     mappings =>
       val gzipMappings = for {
-        (file, path) <- mappings if !file.isDirectory && include.accept(file) && !exclude.accept(file)
+        (fileRef, path) <- mappings
+        file = PluginCompat.toFile(fileRef)
+        if !file.isDirectory && include.accept(file) && !exclude.accept(file)
       } yield {
         val gzipPath = path + ".gz"
         val gzipFile = targetDir / gzipPath
         IO.gzip(file, gzipFile)
-        (gzipFile, gzipPath)
+        (PluginCompat.toFileRef(gzipFile), gzipPath)
       }
       mappings ++ gzipMappings
   }

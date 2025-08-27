@@ -11,7 +11,18 @@ developers += Developer(
   url("https://github.com/playframework")
 )
 
-addSbtWeb("1.5.8")
+addSbtWeb("1.6.0-M1")
+
+crossScalaVersions += "3.7.2"
+
+pluginCrossBuild / sbtVersion := {
+  scalaBinaryVersion.value match {
+    case "2.12" =>
+      sbtVersion.value
+    case _ =>
+      "2.0.0-RC3"
+  }
+}
 
 // Customise sbt-dynver's behaviour to make it work with tags which aren't v-prefixed
 ThisBuild / dynverVTagPrefix := false
