@@ -1,3 +1,5 @@
+ThisBuild / scalaVersion := "2.12.21"
+
 lazy val `sbt-gzip` = project in file(".")
 
 enablePlugins(SbtWebBase)
@@ -13,20 +15,20 @@ developers += Developer(
 
 addSbtWeb("1.6.0-M4")
 
-crossScalaVersions += "3.8.4"
+crossScalaVersions := Seq("2.12.21", "3.9.0")
 
 pluginCrossBuild / sbtVersion := {
   scalaBinaryVersion.value match {
     case "2.12" =>
-      sbtVersion.value
+      "1.13.0"
     case _ =>
-      "2.0.0-RC11"
+      "2.1.0"
   }
 }
 
 scalacOptions ++= {
   scalaBinaryVersion.value match {
-    case "2.12" => Seq("-release:8")
+    case "2.12" => Seq("-Xsource:3", "-release:8")
     case _      => Nil
   }
 }
